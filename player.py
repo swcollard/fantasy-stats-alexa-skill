@@ -11,7 +11,8 @@ class Player:
         self.week_projected_pts = week_projected_pts
 
     def __str__(self):
-        return str(self.name) + ' has ' + str(self.week_pts) + ' points this week.'
+        return str(self.name) + ' (' + str(self.position) + ') has ' \
+               + str(self.week_pts) + ' points this week.'
 
 
 def decode_player(player):
@@ -23,3 +24,8 @@ def decode_player(player):
                   season_projected_pts=str(player['seasonProjectedPts']),
                   week_pts=str(player['weekPts']),
                   week_projected_pts=str(player['weekProjectedPts']))
+
+
+def sort_by_week_points(players):
+    players.sort(key=lambda x: x.week_pts, reverse=True)
+    return players
