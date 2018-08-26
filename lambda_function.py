@@ -46,7 +46,7 @@ def get_welcome_response():
     session_attributes = {}
     card_title = "Fantasy Football Stats"
     speech_output = "Welcome to the Fantasy Football Stats Skill. " \
-                    "Ask for stats by saying, Alexa, " \
+                    "Ask for stats by saying, " \
                     "how many points does Tom Brady have this week?"
     # If the user either does not reply to the welcome message or says something
     # that is not understood, they will be prompted again with this text.
@@ -94,6 +94,30 @@ def get_stats_for_player(intent, session):
         card_title, speech_output, reprompt_text, should_end_session))
 
 
+def get_season_stats_for_player(intent, session):
+    """ Gets the current stats for a given player
+    """
+
+    card_title = intent['name']
+    session_attributes = {}
+    should_end_session = False
+
+    if 'Athlete' in intent['slots']:
+        player_name = intent['slots']['Athlete']['value']
+        if player_name.lower() in players:
+            p = players[player_name.lower()]
+            speech_output = player_name + ' has ' + str(p.season_pts) + ' this season.'
+            session_attributes = create_player_stat_attributes(p.name, p.season_pts)
+        else:
+            speech_output = "Sorry, I can't find stats for " + player_name
+    else:
+        speech_output = "Please ask for a player name to get stats."
+    reprompt_text = "Ask for stats by saying, " \
+                    "how many points does Tom Brady have this week?"
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+
 # --------------- Events ------------------
 
 def on_session_started(session_started_request, session):
@@ -126,6 +150,8 @@ def on_intent(intent_request, session):
     # Dispatch to your skill's intent handlers
     if intent_name == "PlayerStats":
         return get_stats_for_player(intent, session)
+    if intent_name == "PlayerSeasonStats":
+        return get_season_stats_for_player(intent, session)
     elif intent_name == "AMAZON.HelpIntent":
         return get_welcome_response()
     elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":

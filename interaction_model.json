@@ -37,6 +37,19 @@
                         "How many points does {Athlete} have",
                         "How many points does {Athlete} have this week"
                     ]
+                },
+                {
+                    "name": "PlayerSeasonStats",
+                    "slots": [
+                        {
+                            "name": "Athlete",
+                            "type": "AMAZON.Athlete"
+                        }
+                    ],
+                    "samples": [
+                        "How many points does {Athlete} have this season",
+                        "How is {Athlete} doing this season"
+                    ]
                 }
             ],
             "types": []
