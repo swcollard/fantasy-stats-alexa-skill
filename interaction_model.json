@@ -1,0 +1,45 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "fantasy football stats",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "PlayerStats",
+                    "slots": [
+                        {
+                            "name": "Athlete",
+                            "type": "AMAZON.Athlete"
+                        }
+                    ],
+                    "samples": [
+                        "How is {Athlete} doing this week",
+                        "How is {Athlete} doing",
+                        "How many points does {Athlete} have",
+                        "How many points does {Athlete} have this week"
+                    ]
+                }
+            ],
+            "types": []
+        }
+    }
+}

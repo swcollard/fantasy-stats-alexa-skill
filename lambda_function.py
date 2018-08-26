@@ -46,11 +46,11 @@ def get_welcome_response():
     session_attributes = {}
     card_title = "Fantasy Football Stats"
     speech_output = "Welcome to the Fantasy Football Stats Skill. " \
-                    "Ask for stats by saying, Alexa, ask fantasy football stats " \
+                    "Ask for stats by saying, Alexa, " \
                     "how many points does Tom Brady have this week?"
     # If the user either does not reply to the welcome message or says something
     # that is not understood, they will be prompted again with this text.
-    reprompt_text = "Ask for stats by saying, Alexa, ask fantasy football stats " \
+    reprompt_text = "Ask for stats by saying, " \
                     "how many points does Tom Brady have this week?"
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
@@ -88,7 +88,7 @@ def get_stats_for_player(intent, session):
             speech_output = "Sorry, I can't find stats for " + player_name
     else:
         speech_output = "Please ask for a player name to get stats."
-    reprompt_text = "Ask for stats by saying, Alexa, ask fantasy football stats " \
+    reprompt_text = "Ask for stats by saying, " \
                     "how many points does Tom Brady have this week?"
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
