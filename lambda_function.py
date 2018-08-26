@@ -78,12 +78,12 @@ def get_stats_for_player(intent, session):
     session_attributes = {}
     should_end_session = False
 
-    if 'Player' in intent['slots']:
-        player_name = intent['slots']['Player']['value']
-        session_attributes = create_player_stat_attributes(player_name, 10)
+    if 'Athlete' in intent['slots']:
+        player_name = intent['slots']['Athlete']['value']
         if player_name.lower() in players:
-            speech_output = player_name + " has " + players[player_name.lower()] + \
-                            " points this week."
+            p = players[player_name.lower()]
+            speech_output = str(p)
+            session_attributes = create_player_stat_attributes(p.name, p.week_pts)
         else:
             speech_output = "Sorry, I can't find stats for " + player_name
     else:
@@ -124,7 +124,7 @@ def on_intent(intent_request, session):
     intent_name = intent_request['intent']['name']
 
     # Dispatch to your skill's intent handlers
-    if intent_name == "GetPlayerStatsIntent":
+    if intent_name == "PlayerStats":
         return get_stats_for_player(intent, session)
     elif intent_name == "AMAZON.HelpIntent":
         return get_welcome_response()
