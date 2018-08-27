@@ -4,8 +4,10 @@ Alexa Skill for fetching fantasy football stats
 
 from __future__ import print_function
 from nfl_client import fetch_player_name_map
+from date_helper import get_week
 
-players = fetch_player_name_map(2017, 6)
+week = get_week()
+players = fetch_player_name_map(week['year'], week['week'])
 
 
 def build_speechlet_response(title, output, reprompt_text, should_end_session):
