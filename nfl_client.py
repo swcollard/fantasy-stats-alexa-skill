@@ -2,8 +2,7 @@ import json
 import player
 import urllib2
 
-BASE_URL = 'http://api.fantasy.nfl.com/v1/players/stats?statType=seasonStats&season={0}&week={1}&format=json'
-
+BASE_URL = 'https://api.fantasy.nfl.com/v2/players/weekstats?statType=seasonStats&season={0}&week={1}'
 
 def call_nfl(year, week):
     url = BASE_URL.format(year, week)
